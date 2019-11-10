@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { Text, View , ScrollView} from 'react-native'
 import ContactItem from '../components/ContactItem'
+import { withNavigation } from 'react-navigation';
 
-export default class ContactsPage extends Component {
+
+ class ContactsPage extends Component {
 
     constructor(props) {
         super(props)
@@ -48,9 +50,9 @@ export default class ContactsPage extends Component {
     }
 
     gestionar(contacto){
+        this.props.navigation.navigate('contacto', {contacto})
         alert(JSON.stringify(contacto));
     }
-
 
     render() {
         return (
@@ -68,3 +70,7 @@ export default class ContactsPage extends Component {
         )
     }
 }
+
+
+
+export default withNavigation(ContactsPage);

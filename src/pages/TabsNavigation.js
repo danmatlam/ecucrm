@@ -6,11 +6,12 @@ import { palette } from '../theme';
 import ContactsPage from '../pages/ContactsPage'
 
 const tema = {
+    activeTintColor: '#e91e63',
     tabBarOptions: {
       labelStyle: { fontSize: 12 },
       style: {
-        backgroundColor: palette.primary.main,
-        color: palette.primary.contrastText
+        backgroundColor: palette.secondary.main,
+        color: palette.secondary.contrastText
       },
     }
   }

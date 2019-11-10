@@ -3,13 +3,15 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import ContactsPage from './ContactsPage';
 import ContactForm from '../components/ContactForm'
+import ContactoPage from './ContactoPage';
 
 const AppNavigator = createStackNavigator(
     {
         // contactos: {screen: ContactsPage},
         // contacto: {screen: Contact}
         contactos: { screen: props => <ContactsPage titulo="Atendido" /> },
-        concatForm: { screen: ContactForm}
+        concatForm: { screen: ContactForm},
+        contacto: {screen: ContactoPage}
     }
 );
 

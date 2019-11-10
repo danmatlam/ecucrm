@@ -1,10 +1,10 @@
 export const palette = {
     primary: {
-        main: '#C6BFBF',
-        contrastText: '#000000',
+        main: '#29487D',
+        contrastText: '#FFFFFF',
     },
     secondary: {
-        main: '##17BE3D',
+        main: '#17BE3D',
         contrastText: '#000000',
     },
     gray: {
