@@ -5,10 +5,11 @@ import Icon from 'react-native-vector-icons/AntDesign';
 const ContacItem = (props) => {
     // const foto = props.contacto.foto;
     // const nombre = props.contacto.nombre; d
+    const {gestionar} = props;
     const { foto, nombre } = props.contacto;
     return (
         <View>
-            <ListItem>
+            <ListItem gestionar={gestionar}>
                 <Avatar foto={foto}></Avatar>
                 <Nombre nombre={nombre}></Nombre>
                 <ButtonContainer>
@@ -23,7 +24,9 @@ const ContacItem = (props) => {
 
 const ListItem = (props) => {
     return (
-        <View style={{
+        <TouchableOpacity 
+            onPress={props.gestionar}
+            style={{
             ...STYLES_HELPERS_RN.shadowColor,
             backgroundColor: '#FA3E3E',
             borderRadius: 18,
@@ -34,7 +37,7 @@ const ListItem = (props) => {
             width:'100%'
         }}>
             {props.children}
-        </View>
+        </TouchableOpacity>
     )
 }
 const Avatar = (props) => {

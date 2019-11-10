@@ -46,6 +46,12 @@ export default class ContactsPage extends Component {
             ]
         }
     }
+
+    gestionar(contacto){
+        alert(JSON.stringify(contacto));
+    }
+
+
     render() {
         return (
             <ScrollView>
@@ -54,6 +60,7 @@ export default class ContactsPage extends Component {
                         <ContactItem 
                             key={index}
                             contacto={item}
+                            gestionar={()=>this.gestionar(item)}
                         ></ContactItem>
                     ))
                 }
