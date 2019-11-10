@@ -7,59 +7,43 @@ export default class ContactsPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            atender:[
+            clientes: [
                 {
-                    nombre:'Daniel',
-                    foto:'https://images.pexels.com/photos/3098734/pexels-photo-3098734.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
+                    nombre: 'Daniel',
+                    foto: 'https://images.pexels.com/photos/3098734/pexels-photo-3098734.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
+                    celular: '0958989804',
+                    email: 'hola@ecudevs.com',
+                    estado: 1
                 },
                 {
-                    nombre:'Daniel',
-                    foto:'https://images.pexels.com/photos/3098734/pexels-photo-3098734.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
+                    nombre: 'Thian',
+                    foto: 'https://images.pexels.com/photos/2710131/pexels-photo-2710131.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
+                    celular: '0958989804',
+                    email: 'hola@ecudevs.com',
+                    estado: 1
                 },
                 {
-                    nombre:'Daniel',
-                    foto:'https://images.pexels.com/photos/2710131/pexels-photo-2710131.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
+                    nombre: 'Paula',
+                    foto: 'https://images.pexels.com/photos/3098734/pexels-photo-3098734.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
+                    celular: '0958989804',
+                    email: 'hola@ecudevs.com',
+                    estado: 1
                 },
                 {
-                    nombre:'Daniel',
-                    foto:'https://images.pexels.com/photos/3098734/pexels-photo-3098734.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
+                    nombre: 'Luis',
+                    foto: 'https://images.pexels.com/photos/2710131/pexels-photo-2710131.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
+                    celular: '0958989804',
+                    email: 'hola@ecudevs.com',
+                    estado: 1
                 },
                 {
-                    nombre:'Daniel',
-                    foto:'https://images.pexels.com/photos/2710131/pexels-photo-2710131.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
-                },      {
-                    nombre:'Daniel',
-                    foto:'https://images.pexels.com/photos/3098734/pexels-photo-3098734.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
+                    nombre: 'Ricardo',
+                    foto: 'https://images.pexels.com/photos/2710131/pexels-photo-2710131.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
+                    celular: '0958989804',
+                    email: 'hola@ecudevs.com',
+                    estado: 1
                 },
-                {
-                    nombre:'Daniel',
-                    foto:'https://images.pexels.com/photos/2710131/pexels-photo-2710131.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
-                },      {
-                    nombre:'Daniel',
-                    foto:'https://images.pexels.com/photos/3098734/pexels-photo-3098734.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
-                },
-                {
-                    nombre:'Daniel',
-                    foto:'https://images.pexels.com/photos/2710131/pexels-photo-2710131.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
-                },      {
-                    nombre:'Daniel',
-                    foto:'https://images.pexels.com/photos/3098734/pexels-photo-3098734.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
-                },
-                {
-                    nombre:'Daniel',
-                    foto:'https://images.pexels.com/photos/2710131/pexels-photo-2710131.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
-                },
-                {
-                    nombre:'Daniel',
-                    foto:'https://images.pexels.com/photos/3098734/pexels-photo-3098734.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
-                },
-                {
-                    nombre:'Daniel',
-                    foto:'https://images.pexels.com/photos/2710131/pexels-photo-2710131.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
-                },
-            ],
-            atendido:[],
-            confirmado:[],
+            ]
         }
     }
     render() {
