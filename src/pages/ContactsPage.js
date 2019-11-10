@@ -50,14 +50,25 @@ import { withNavigation } from 'react-navigation';
     }
 
     gestionar(contacto){
-        this.props.navigation.navigate('contacto', {contacto})
-        alert(JSON.stringify(contacto));
+        this.props.navigation.navigate('contacto', {contacto});
+    }
+
+    cambiarEstado(contacto, estado){
+        const clientes = this.state.clientes;
+        const indice = clientes.findIndex(item => item.nombre === contacto.nombre);
+        clientes[indice].estado= estado;
+
+        this.setState({
+            clientes: clientes
+        });
+
+        this.props.navigation.navigate('contactos');
     }
 
     render() {
         return (
             <ScrollView>
-                {
+                {/* {
                     this.state.clientes.map((item, index) => (
                         <ContactItem 
                             key={index}
@@ -65,6 +76,24 @@ import { withNavigation } from 'react-navigation';
                             gestionar={()=>this.gestionar(item)}
                         ></ContactItem>
                     ))
+                } */}
+                 {
+                    this.state.clientes.map((item, index)=>{
+                        const nuevoItem =  Object.assign(
+                            item,
+                            { inProgress:()=>this.cambiarEstado(item,2)},
+                            { finish:()=>this.cambiarEstado(item,3)},
+                            { reset:()=>this.cambiarEstado(item,1)}
+                        );
+                    
+                        return (
+                            <ContactItem 
+                                key={index}
+                                contacto={nuevoItem}
+                                gestionar={()=>this.gestionar(item)}
+                            ></ContactItem>
+                        )
+                    })
                 }
             </ScrollView>
         )

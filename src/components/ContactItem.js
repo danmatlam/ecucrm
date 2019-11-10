@@ -1,15 +1,15 @@
 import React from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
-import { STYLES_HELPERS_RN } from '../theme'
+import { STYLES_HELPERS_RN, palette, status } from '../theme'
 import Icon from 'react-native-vector-icons/AntDesign';
 const ContacItem = (props) => {
     // const foto = props.contacto.foto;
     // const nombre = props.contacto.nombre; d
     const {gestionar} = props;
-    const { foto, nombre } = props.contacto;
+    const { foto, nombre, celular, email, estado } = props.contacto;
     return (
         <View>
-            <ListItem gestionar={gestionar}>
+            <ListItem gestionar={gestionar} estado={estado}>
                 <Avatar foto={foto}></Avatar>
                 <Nombre nombre={nombre}></Nombre>
                 <ButtonContainer>
@@ -23,12 +23,19 @@ const ContacItem = (props) => {
 
 
 const ListItem = (props) => {
+
+    const estado = props.estado;
+    const {warning, danger, success } = status;
+
     return (
         <TouchableOpacity 
             onPress={props.gestionar}
             style={{
             ...STYLES_HELPERS_RN.shadowColor,
-            backgroundColor: '#FA3E3E',
+            backgroundColor: 
+                estado == 1 ? danger :
+                estado == 2 ? warning :
+                estado == 3 && success,
             borderRadius: 18,
             margin: 6,
             padding: 9,

@@ -7,8 +7,6 @@ import ContactoPage from './ContactoPage';
 
 const AppNavigator = createStackNavigator(
     {
-        // contactos: {screen: ContactsPage},
-        // contacto: {screen: Contact}
         contactos: { screen: props => <ContactsPage titulo="Atendido" /> },
         concatForm: { screen: ContactForm},
         contacto: {screen: ContactoPage}
