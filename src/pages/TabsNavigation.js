@@ -19,19 +19,21 @@ const tema = {
 
 const rutas = {
     porAtender: {
-        screen: props => <ContactsPage titulo="Por Atender" />,
+        screen: props => <ContactsPage titulo="Por Atender"
+        mostrar={1}/>,
         navigationOptions: {
             tabBarLabel: 'Atender'
         }
     },
     atendiendo: {
-        screen: props => <ContactsPage titulo="En progreso" />,
+        screen: props => <ContactsPage titulo="En progreso" mostrar={2}/>,
         navigationOptions: {
             tabBarLabel: 'En progreso'
         }
     },
+    
     atendido: {
-        screen: props => <ContactsPage titulo="Atendido" />,
+        screen: props => <ContactsPage titulo="Atendido" mostrar={3}/>,
         tabBarLabel: 'Atendido',
         navigationOptions: {
             tabBarLabel: 'Vendido'

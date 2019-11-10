@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { Text, View , ScrollView} from 'react-native'
+import { Text, View, ScrollView } from 'react-native'
 import ContactItem from '../components/ContactItem'
 import { withNavigation } from 'react-navigation';
 
 
- class ContactsPage extends Component {
+class ContactsPage extends Component {
 
     constructor(props) {
         super(props)
@@ -29,70 +29,71 @@ import { withNavigation } from 'react-navigation';
                     foto: 'https://images.pexels.com/photos/3098734/pexels-photo-3098734.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
                     celular: '0958989804',
                     email: 'hola@ecudevs.com',
-                    estado: 1
+                    estado: 2
                 },
                 {
                     nombre: 'Luis',
                     foto: 'https://images.pexels.com/photos/2710131/pexels-photo-2710131.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
                     celular: '0958989804',
                     email: 'hola@ecudevs.com',
-                    estado: 1
+                    estado: 2
                 },
                 {
-                    nombre: 'Ricardo',
+                    nombre: 'Adriana',
                     foto: 'https://images.pexels.com/photos/2710131/pexels-photo-2710131.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
                     celular: '0958989804',
                     email: 'hola@ecudevs.com',
-                    estado: 1
+                    estado: 3
                 },
+
             ]
         }
     }
 
-    gestionar(contacto){
-        this.props.navigation.navigate('contacto', {contacto});
+    gestionar(contacto) {
+        this.props.navigation.navigate('contacto', { contacto });
     }
 
-    cambiarEstado(contacto, estado){
+    cambiarEstado(contacto, estado) {
         const clientes = this.state.clientes;
         const indice = clientes.findIndex(item => item.nombre === contacto.nombre);
-        clientes[indice].estado= estado;
-
+        clientes[indice].estado = estado;
         this.setState({
             clientes: clientes
         });
-
-        this.props.navigation.navigate('contactos');
+        this.props.navigation.navigate('home');
     }
 
     render() {
         return (
             <ScrollView>
-                {/* {
-                    this.state.clientes.map((item, index) => (
-                        <ContactItem 
-                            key={index}
-                            contacto={item}
-                            gestionar={()=>this.gestionar(item)}
-                        ></ContactItem>
-                    ))
-                } */}
-                 {
-                    this.state.clientes.map((item, index)=>{
-                        const nuevoItem =  Object.assign(
+                <Text style={{ fontSize: 24, fontWeight: '600' }}>
+                    {this.props.titulo}
+                </Text>
+                {
+                    this.state.clientes.map((item, index) => {
+                        const nuevoItem = Object.assign(
                             item,
-                            { inProgress:()=>this.cambiarEstado(item,2)},
-                            { finish:()=>this.cambiarEstado(item,3)},
-                            { reset:()=>this.cambiarEstado(item,1)}
+                            { inProgress: () => this.cambiarEstado(item, 2) },
+                            { finish: () => this.cambiarEstado(item, 3) },
+                            { reset: () => this.cambiarEstado(item, 1) }
                         );
-                    
-                        return (
-                            <ContactItem 
-                                key={index}
-                                contacto={nuevoItem}
-                                gestionar={()=>this.gestionar(item)}
-                            ></ContactItem>
-                        )
+
+                        if(this.props.mostrar == nuevoItem.estado){
+                            return (
+                                <ContactItem
+                                    key={index}
+                                    contacto={nuevoItem}
+                                    gestionar={() => this.gestionar(item)}
+                                ></ContactItem>
+                            )
+                        }
+                     
+
+
+
+
+
                     })
                 }
             </ScrollView>

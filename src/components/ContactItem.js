@@ -9,7 +9,9 @@ const ContacItem = (props) => {
     const { foto, nombre, celular, email, estado } = props.contacto;
     return (
         <View>
-            <ListItem gestionar={gestionar} estado={estado}>
+            <ListItem 
+                gestionar={gestionar} 
+            >
                 <Avatar foto={foto}></Avatar>
                 <Nombre nombre={nombre}></Nombre>
                 <ButtonContainer>
@@ -32,10 +34,7 @@ const ListItem = (props) => {
             onPress={props.gestionar}
             style={{
             ...STYLES_HELPERS_RN.shadowColor,
-            backgroundColor: 
-                estado == 1 ? danger :
-                estado == 2 ? warning :
-                estado == 3 && success,
+            backgroundColor: danger,
             borderRadius: 18,
             margin: 6,
             padding: 9,

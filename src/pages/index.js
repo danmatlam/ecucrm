@@ -4,10 +4,12 @@ import { createStackNavigator } from 'react-navigation-stack';
 import ContactsPage from './ContactsPage';
 import ContactForm from '../components/ContactForm'
 import ContactoPage from './ContactoPage';
+import TabsNavigation from './TabsNavigation';
 
 const AppNavigator = createStackNavigator(
     {
-        contactos: { screen: props => <ContactsPage titulo="Atendido" /> },
+        home:{ screen : TabsNavigation},
+        contactos: { screen: ContactsPage },
         concatForm: { screen: ContactForm},
         contacto: {screen: ContactoPage}
     }
