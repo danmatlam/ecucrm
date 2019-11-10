@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import Contacts from './src/components/Contacts';
+import ContactItem from './src/components/ContactItem';
 import ContactsPage from './src/pages/ContactsPage';
 import { TextInput } from 'react-native-paper';
 import ContactForm from './src/components/ContactForm';

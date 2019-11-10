@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { STYLES_HELPERS_RN } from '../theme'
 import Icon from 'react-native-vector-icons/AntDesign';
-const Contacts = (props) => {
+const ContacItem = (props) => {
     // const foto = props.contacto.foto;
     // const nombre = props.contacto.nombre; d
     const { foto, nombre } = props.contacto;
@@ -19,7 +19,8 @@ const Contacts = (props) => {
         </View>
     )
 }
-export default Contacts;
+
+
 const ListItem = (props) => {
     return (
         <View style={{
@@ -80,5 +81,8 @@ const IconButton = (props) => {
             </TouchableOpacity>
     )
 }
+
+
+export default ContacItem;
 
 

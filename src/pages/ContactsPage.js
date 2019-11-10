@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View , ScrollView} from 'react-native'
-import Contacts from '../components/Contacts'
+import ContactItem from '../components/ContactItem'
 
 export default class ContactsPage extends Component {
 
@@ -50,11 +50,11 @@ export default class ContactsPage extends Component {
         return (
             <ScrollView>
                 {
-                    this.state.atender.map((item, index) => (
-                        <Contacts 
+                    this.state.clientes.map((item, index) => (
+                        <ContactItem 
                             key={index}
                             contacto={item}
-                        ></Contacts>
+                        ></ContactItem>
                     ))
                 }
             </ScrollView>
