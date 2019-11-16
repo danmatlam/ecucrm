@@ -9,22 +9,25 @@ import { palette } from '../theme';
 
 
 
-const  tema = {
+const tema = {
     defaultNavigationOptions: {
-      headerStyle: { backgroundColor: palette.primary.main, borderBottomWidth: 0},
-      headerTintColor: palette.primary.contrastText,
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
+        headerStyle: { 
+            backgroundColor: palette.primary.main, 
+            borderBottomWidth: 0
+        },
+        headerTintColor: palette.primary.contrastText,
+        headerTitleStyle: {
+            fontWeight: 'bold',
+        },
     }
-  }
+}
 
-  let rutas =  {
+let rutas = {
+
     home: {
         screen: TabsNavigation,
         navigationOptions: {
-            title: 'Ecu Crm',
-
+            title: 'EcuCrm',
         },
 
     },
@@ -50,7 +53,7 @@ const  tema = {
     },
 }
 
-const AppNavigator = createStackNavigator( rutas,tema);
+const AppNavigator = createStackNavigator(rutas, tema);
 
 
 export default createAppContainer(AppNavigator);

@@ -6,29 +6,25 @@ import { palette } from '../theme';
 import ContactosPage from '../pages/ContactosPage'
 const tema = {
     tabBarOptions: {
-        labelStyle: { fontSize: 18 },
-        upperCaseLabel: false,
+        labelStyle: { fontSize: 12 },
+        upperCaseLabel: true,
         style: {
             backgroundColor: palette.primary.main,
             color: palette.primary.contrastText,
-            backgroundColor: palette.primary.main,
-            color: palette.primary.contrastText,
-            fontSize:20
         },
         indicatorStyle: {
-            backgroundColor: 'red',
+            backgroundColor: palette.gray.gray300
         },
     }
 }
 
 
 const rutas = {
-    porAtender: {
-        screen: props =>
-            <ContactosPage
-                titulo="Por Atender"
-                mostrar={1}
-            />,
+
+    // test:ContactosPage, 
+    porAtender: 
+    {
+        screen: props => <ContactosPage titulo="Por Atender" mostrar={1}/>,
         navigationOptions: {
             tabBarLabel: 'Atender'
         }

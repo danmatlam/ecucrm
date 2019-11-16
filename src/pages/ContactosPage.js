@@ -60,12 +60,6 @@ class ContactosPage extends Component {
     }
 
     cambiarEstado(contacto, estado) {
-        // const clientes = this.state.clientes;
-        // const indice = clientes.findIndex(item => item.nombre === contacto.nombre);
-        // clientes[indice].estado = estado;
-        // this.setState({
-        //     clientes: clientes
-        // });
         contacto.estado = estado;
         this.props.updateContactos(contacto);
         this.props.navigation.navigate('home');
@@ -74,7 +68,6 @@ class ContactosPage extends Component {
     render() {
 
         const {contactos, fetchingList, errorList} = this.props.contactosState
-        console.log(this.props.contactosState);
         return (
             <ScrollView>
                 <Text style={{ fontSize: 24, fontWeight: '600' }}>

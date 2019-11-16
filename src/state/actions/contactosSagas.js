@@ -11,6 +11,7 @@ import {
 } from '../actionTypes';
 
 
+
 //[1] Crear función que llama al api
 const readContactos = () => {
     return axios.get('https://rn-crm-back.herokuapp.com/api/clientes');
@@ -27,7 +28,6 @@ export function* readContactosSagas() {
         }else{
             throw 'Algo salio mal...'
         }
-
     } 
     catch (error) {
         yield put({ type: CONTACTOS_READ_ERR, error: error });
@@ -41,19 +41,18 @@ export function* readContactosSagas() {
 
 
 //[1] Crear función que llama al api
-const updateContacto = () => {
-    return axios.put('https://rn-crm-back.herokuapp.com/api/clientes');
+const updateContacto = (payload) => {
+    return axios.put('https://rn-crm-back.herokuapp.com/api/clientes', payload);
 }
 //[2] Crear Saga, llama a [1] y dispara reducer
 export function* updateContactoSagas(action) {
-    debugger;
     try {
-        //[2.1] NOS SUBSCRIBIMOS 
+        console.log(action.payload.nombre);
         const res = yield call(updateContacto, action.payload);
-        const clientes = res.data.clientes;
+        const cliente = res.data.cliente;
         //[2.2] RESPUESTA EN MANO DESPACHAMOS REDUX
-        if (clientes) {
-            yield put({ type:CONTACTO_UPDATE_SUCCESS, payload: clientes });
+        if (cliente) {
+            yield put({ type:CONTACTO_UPDATE_SUCCESS, payload: cliente });
         }else{
             throw 'Algo salio mal...'
         }

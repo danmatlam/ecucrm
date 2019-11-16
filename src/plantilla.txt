@@ -68,8 +68,7 @@ class ContactosPage extends Component {
         //     clientes: clientes
         // });
 
-        console.log(contacto);
-        console.log(estado);
+    
         contacto.estado = estado;
         this.props.updateContactos(contacto);
         this.props.navigation.navigate('home');
