@@ -1,7 +1,7 @@
 import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import ContactsPage from './ContactsPage';
+import ContactosPage from './ContactosPage';
 import ContactForm from '../components/ContactForm'
 import ContactoPage from './ContactoPage';
 import TabsNavigation from './TabsNavigation';
@@ -30,7 +30,7 @@ const  tema = {
 
     },
     contactos: {
-        screen: ContactsPage,
+        screen: ContactosPage,
         navigationOptions: {
             title: 'Contactos'
         }

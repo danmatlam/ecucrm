@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import ContactItem from './src/components/ContactItem';
-import ContactsPage from './src/pages/ContactsPage';
+import ContactosPage from './src/pages/ContactosPage';
 import { TextInput } from 'react-native-paper';
 import ContactForm from './src/components/ContactForm';
 import IndexNavigation from './src/pages'

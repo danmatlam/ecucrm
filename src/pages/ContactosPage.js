@@ -4,7 +4,7 @@ import ContactItem from '../components/ContactItem'
 import { withNavigation } from 'react-navigation';
 
 
-class ContactsPage extends Component {
+class ContactosPage extends Component {
 
     constructor(props) {
         super(props)
@@ -97,4 +97,4 @@ class ContactsPage extends Component {
 
 
 
-export default withNavigation(ContactsPage);
+export default withNavigation(ContactosPage);

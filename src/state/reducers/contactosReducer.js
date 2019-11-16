@@ -10,17 +10,17 @@ const defaultState = {
 
 const  contactosReducer = (state = defaultState, action) => {
     switch (action.type) {
-        case CONTACTO_READ: 
+        case CONTACTOS_READ: 
         return { 
             ...state,
             fetchingList:true
         }
-        case CONTACTO_READ_SUCCESS: return {
+        case CONTACTOS_READ_SUCCESS: return {
             ...state,
             fetchingList:false,
             contactos: action.payload
         }
-        case CONTACTO_READ_ERR: return {
+        case CONTACTOS_READ_ERR: return {
             ...state,
             fetchingList:false,
             errorList: true,

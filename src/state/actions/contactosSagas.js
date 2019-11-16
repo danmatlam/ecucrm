@@ -15,24 +15,20 @@ const readContactos = () => {
 }
 //[2] Crear Saga, llama a [1] y dispara reducer
 export function* readContactosSagas() {
-    try {//[2.1] NOS SUBSCRIBIMOS 
+    try {
+        //[2.1] NOS SUBSCRIBIMOS 
         const res = yield call(readContactos);
         const clientes = res.data.clientes;
         //[2.2] RESPUESTA EN MANO DESPACHAMOS REDUX
         if (clientes) {
-            yield put({ 
-                type:CONTACTO_READ_SUCCESS, 
-                payload: clientes 
-            });
+            yield put({ type:CONTACTO_READ_SUCCESS, payload: clientes });
         }else{
             throw 'Algo salio mal...'
         }
 
-    } catch (error) {
-        yield put({ 
-            type: CONTACTO_READ_ERR, 
-            error: error 
-        });
+    } 
+    catch (error) {
+        yield put({ type: CONTACTO_READ_ERR, error: error });
     }
 
 }

@@ -3,7 +3,7 @@ import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import { palette } from '../theme';
-import ContactsPage from '../pages/ContactsPage'
+import ContactosPage from '../pages/ContactosPage'
 const tema = {
     tabBarOptions: {
         labelStyle: { fontSize: 12 },
@@ -20,7 +20,7 @@ const tema = {
 const rutas = {
     porAtender: {
         screen: props =>
-            <ContactsPage
+            <ContactosPage
                 titulo="Por Atender"
                 mostrar={1}
             />,
@@ -29,14 +29,14 @@ const rutas = {
         }
     },
     atendiendo: {
-        screen: props => <ContactsPage titulo="En progreso" mostrar={2} />,
+        screen: props => <ContactosPage titulo="En progreso" mostrar={2} />,
         navigationOptions: {
             tabBarLabel: 'En progreso'
         }
     },
 
     atendido: {
-        screen: props => <ContactsPage titulo="Atendido" mostrar={3} />,
+        screen: props => <ContactosPage titulo="Atendido" mostrar={3} />,
         tabBarLabel: 'Atendido',
         navigationOptions: {
             tabBarLabel: 'Vendido'
