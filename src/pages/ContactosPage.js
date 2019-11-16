@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Text, View, ScrollView } from 'react-native'
 import ContactItem from '../components/ContactItem'
 import { withNavigation } from 'react-navigation';
-
+import {CONTACTOS_READ, CONTACTO_UPDATE} from '../state/actionTypes'
+import { connect } from 'react-redux'
 
 class ContactosPage extends Component {
 
@@ -50,6 +51,10 @@ class ContactosPage extends Component {
         }
     }
 
+    componentDidMount(){
+        this.props.getContactos();
+    }
+
     gestionar(contacto) {
         this.props.navigation.navigate('contacto', { contacto });
     }
@@ -65,13 +70,20 @@ class ContactosPage extends Component {
     }
 
     render() {
+
+        const {contactos, fetchingList, errorList} = this.props.contactosState
+        console.log(this.props.contactosState);
         return (
             <ScrollView>
                 <Text style={{ fontSize: 24, fontWeight: '600' }}>
                     {this.props.titulo}
                 </Text>
                 {
-                    this.state.clientes.map((item, index) => {
+
+            // x ? 1 : 2
+            // x && 1
+                        
+                        contactos && contactos.map((item, index) => {
                         const nuevoItem = Object.assign(
                             item,
                             { inProgress: () => this.cambiarEstado(item, 2) },
@@ -101,4 +113,21 @@ class ContactosPage extends Component {
     }
 }
 
-export default withNavigation(ContactosPage);
+
+
+const mapStateToProps = (state) => {
+    return {
+        contactosState: state.contactosState
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getContactos: () => dispatch({ type:CONTACTOS_READ  }),
+        updateContactos: payload => dispatch({type:CONTACTO_UPDATE, payload}) 
+    }
+};
+
+
+export default withNavigation(
+connect(mapStateToProps, mapDispatchToProps)(ContactosPage)
+);
