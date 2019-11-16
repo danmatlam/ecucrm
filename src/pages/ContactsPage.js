@@ -66,7 +66,7 @@ class ContactsPage extends Component {
 
     render() {
         return (
-            <ScrollView>
+            <ScrollView style={{padding:6}}>
                 <Text style={{ fontSize: 24, fontWeight: '600' }}>
                     {this.props.titulo}
                 </Text>
@@ -88,12 +88,6 @@ class ContactsPage extends Component {
                                 ></ContactItem>
                             )
                         }
-                     
-
-
-
-
-
                     })
                 }
             </ScrollView>

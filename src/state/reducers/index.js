@@ -7,5 +7,5 @@ import contactosReducer from './contactosReducer'
 
 // Exportar reducers como estados [2]
 export default combineReducers({
-    contactoState: contactosReducer,
+    contactosState: contactosReducer,
 })

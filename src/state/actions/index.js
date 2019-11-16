@@ -1,12 +1,10 @@
 
 import { takeLatest } from "redux-saga/effects";
-import { 
-    CONTACTO_READ
-} from './actionTypes';
-
+import { CONTACTOS_READ } from '../actionTypes';
 import { readContactosSagas , saveContactoSagas} from './contactosSagas';
 
+//logica
 export function* watcherSaga() {
-    yield takeLatest(CONTACTO_READ, readContactosSagas);
+    yield takeLatest(CONTACTOS_READ, readContactosSagas);
 }
 

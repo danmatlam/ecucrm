@@ -1,8 +1,4 @@
-import {
-    CONTACTO_READ,
-    CONTACTO_READ_SUCCESS,
-    CONTACTO_READ_ERR,
-} from '../actions/actionTypes';
+import { CONTACTOS_READ, CONTACTOS_READ_SUCCESS, CONTACTOS_READ_ERR,} from './../actionTypes';
 const defaultState = {
     contactos: [],
     fetchingList: false,
@@ -10,6 +6,7 @@ const defaultState = {
 }
 
 
+/// EL REDUCER GESTIONA/ADMINISTRA/MOLDEA LOS DATOS
 
 const  contactosReducer = (state = defaultState, action) => {
     switch (action.type) {

@@ -1,3 +1,6 @@
+/// LOS SAGAS SON LOS QUE LLAMAN AL WEB SERVICE Y DESPACHAN LA RESPUESTA AL REDUCER
+
+
 import { call, put } from "redux-saga/effects";
 import axios from "axios";
 import {
@@ -6,21 +9,23 @@ import {
 } from '../actions/actionTypes';
 
 
-// CALLBACKS O PROMESAS (FUNCIONES PRIVADAS)
+//[1] Crear función que llama al api
 const readContactos = () => {
-    return axios.get('https://proyecto-danmat.herokuapp.com/api/peliculas');
+    return axios.get('https://rn-crm-back.herokuapp.com/api/clientes');
 }
-//SAGAS  
+//[2] Crear Saga, llama a [1] y dispara reducer
 export function* readContactosSagas() {
     try {//[2.1] NOS SUBSCRIBIMOS 
         const res = yield call(readContactos);
-        const contactos = res.data.contactos;
+        const clientes = res.data.clientes;
         //[2.2] RESPUESTA EN MANO DESPACHAMOS REDUX
-        if (contactos) {
+        if (clientes) {
             yield put({ 
                 type:CONTACTO_READ_SUCCESS, 
-                payload: contactos 
+                payload: clientes 
             });
+        }else{
+            throw 'Algo salio mal...'
         }
 
     } catch (error) {

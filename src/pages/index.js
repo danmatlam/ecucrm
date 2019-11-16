@@ -5,15 +5,53 @@ import ContactsPage from './ContactsPage';
 import ContactForm from '../components/ContactForm'
 import ContactoPage from './ContactoPage';
 import TabsNavigation from './TabsNavigation';
+import { palette } from '../theme';
 
-const AppNavigator = createStackNavigator(
-    {
-        home:{ screen : TabsNavigation},
-        contactos: { screen: ContactsPage },
-        concatForm: { screen: ContactForm},
-        contacto: {screen: ContactoPage}
+
+
+const  tema = {
+    
+    defaultNavigationOptions: {
+      headerStyle: { backgroundColor: palette.primary.main, borderBottomWidth: 0},
+      headerTintColor: palette.primary.contrastText,
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
     }
-);
+  }
+
+  let rutas =  {
+    home: {
+        screen: TabsNavigation,
+        navigationOptions: {
+            title: 'Ecu Crm',
+
+        },
+
+    },
+    contactos: {
+        screen: ContactsPage,
+        navigationOptions: {
+            title: 'Contactos'
+        }
+    },
+
+    contacto: {
+        screen: ContactoPage,
+        navigationOptions: {
+            title: 'Contacto'
+        }
+    },
+
+    concatForm: {
+        screen: ContactForm,
+        navigationOptions: {
+            title: 'Contacto'
+        }
+    },
+}
+
+const AppNavigator = createStackNavigator( rutas,tema);
 
 
 export default createAppContainer(AppNavigator);

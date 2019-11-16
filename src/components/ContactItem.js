@@ -36,8 +36,8 @@ const ListItem = (props) => {
             ...STYLES_HELPERS_RN.shadowColor,
             backgroundColor: danger,
             borderRadius: 18,
-            margin: 6,
             padding: 9,
+            marginVertical:9,
             flexDirection: "row",
             alignItems: 'center',
             width:'100%'
