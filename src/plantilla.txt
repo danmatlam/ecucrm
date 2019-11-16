@@ -2,9 +2,15 @@ import React, { Component } from 'react'
 import { Text, View, ScrollView } from 'react-native'
 import ContactItem from '../components/ContactItem'
 import { withNavigation } from 'react-navigation';
-
+import {CONTACTOS_READ, CONTACTO_UPDATE} from '../state/actionTypes'
+import { connect } from 'react-redux'
 
 class ContactosPage extends Component {
+
+    componentDidMount() {
+       this.props.getContactos();
+    }
+    
 
     constructor(props) {
         super(props)
@@ -55,23 +61,30 @@ class ContactosPage extends Component {
     }
 
     cambiarEstado(contacto, estado) {
-        const clientes = this.state.clientes;
-        const indice = clientes.findIndex(item => item.nombre === contacto.nombre);
-        clientes[indice].estado = estado;
-        this.setState({
-            clientes: clientes
-        });
+        // const clientes = this.state.clientes
+        // const indice = clientes.findIndex(item => item.nombre === contacto.nombre);
+        // clientes[indice].estado = estado;
+        // this.setState({
+        //     clientes: clientes
+        // });
+
+        console.log(contacto);
+        console.log(estado);
+        contacto.estado = estado;
+        this.props.updateContactos(contacto);
         this.props.navigation.navigate('home');
     }
 
     render() {
+        const {contactos, fetchingList, errorList} = this.props.contactosState
+     
         return (
-            <ScrollView>
+            <ScrollView style={{padding:6}}>
                 <Text style={{ fontSize: 24, fontWeight: '600' }}>
                     {this.props.titulo}
                 </Text>
                 {
-                    this.state.clientes.map((item, index) => {
+                    contactos && contactos.map((item, index) => {
                         const nuevoItem = Object.assign(
                             item,
                             { inProgress: () => this.cambiarEstado(item, 2) },
@@ -88,12 +101,6 @@ class ContactosPage extends Component {
                                 ></ContactItem>
                             )
                         }
-                     
-
-
-
-
-
                     })
                 }
             </ScrollView>
@@ -101,4 +108,23 @@ class ContactosPage extends Component {
     }
 }
 
-export default withNavigation(ContactosPage);
+
+const mapStateToProps = (state) => {
+    return {
+        contactosState: state.contactosState
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getContactos: payload => dispatch({ type:CONTACTOS_READ , payload }),
+        updateContactos: payload => dispatch({type:CONTACTO_UPDATE, payload})
+    }
+};
+
+
+
+
+
+
+
+export default withNavigation(connect(mapStateToProps, mapDispatchToProps)(ContactosPage));

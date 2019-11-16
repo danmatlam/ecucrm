@@ -1,35 +1,39 @@
 import React from 'react'
-import { View, Text } from 'react-native'
-import { TextInput,Button } from 'react-native-paper';
-import { palette , status} from '../theme';
+import { View, Text, StyleSheet } from 'react-native'
+import { palette, status } from '../theme';
+
+import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 
 const ContactoPage = (props) => {
-    const contacto = props.navigation.state.params.contacto;
-    const { nombre, foto, celular, email, estado } = contacto;
-    const { inProgress, finish, reset } = contacto;
+    const contacto = props.navigation.state.params.contacto; // extraigo parametros
+    const { nombre, foto, celular, email, estado } = contacto; /// extraigo variables
+    const { inProgress, finish, reset } = contacto; /// extraigo funciones
 
     return (
+
         <View>
-            <Text>{nombre}</Text>
-            <Text>{foto}</Text>
-            <Text>{celular}</Text>
-            <Text>{email}</Text>
-            <Text>{estado}</Text>
-
-            <Button onPress={inProgress} color={status.warning} mode="contained"  style={{margin:9}}>
-                Atender
-            </Button>
-            <Button onPress={finish} color={status.success} mode="contained"  style={{margin:9}}>
-                Cerrar
-            </Button>
-            <Button  onPress={reset}  color={status.danger} mode="contained"  style={{margin:9}}>
-                Reset
-            </Button>
-
-
-
+            <Card>
+                <Card.Title title="Card Title" subtitle="Card Subtitle"
+                    left={(props) => <Avatar.Image size={24} source={{ uri: foto }} />} />
+                <Card.Cover source={{ uri: foto }} />
+                <Card.Content>
+                    <Title>Card title</Title>
+                    <Paragraph>Card content</Paragraph>
+                    <Button onPress={reset} color={status.danger} style={styles.button} mode="contained"> Reiniciar</Button>
+                    <Button onPress={finish} color={status.success} style={styles.button}   mode="contained">Cerrar</Button>
+                    <Button onPress={inProgress} color={status.warning}  style={styles.button}  mode="contained" >Atender</Button>                
+                </Card.Content>
+            </Card>
         </View>
+
     )
 }
+
+const styles = StyleSheet.create({
+    button: {
+     marginVertical:6
+    },
+  });
+  
 
 export default ContactoPage

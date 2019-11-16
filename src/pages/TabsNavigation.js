@@ -6,12 +6,17 @@ import { palette } from '../theme';
 import ContactosPage from '../pages/ContactosPage'
 const tema = {
     tabBarOptions: {
-        labelStyle: { fontSize: 12 },
+        labelStyle: { fontSize: 18 },
+        upperCaseLabel: false,
         style: {
             backgroundColor: palette.primary.main,
             color: palette.primary.contrastText,
             backgroundColor: palette.primary.main,
-            color: palette.primary.contrastText
+            color: palette.primary.contrastText,
+            fontSize:20
+        },
+        indicatorStyle: {
+            backgroundColor: 'red',
         },
     }
 }

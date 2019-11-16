@@ -1,17 +1,32 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import ContactItem from './src/components/ContactItem';
-import ContactosPage from './src/pages/ContactosPage';
-import { TextInput } from 'react-native-paper';
-import ContactForm from './src/components/ContactForm';
-import IndexNavigation from './src/pages'
-import TabsNavigation from './src/pages/TabsNavigation';
+import IndexNavigation from './src/pages';
+
+//REDUX IMPORTS
+import { createStore, applyMiddleware, compose } from "redux";
+import { Provider as ReduxProvider } from "react-redux";
+import reducers from './src/state/reducers';
+import { watcherSaga } from "./src/state/actions";
+import createSagaMiddleware from "redux-saga";
+
+// REDUX INICIALIZACION
+const sagaMiddleware = createSagaMiddleware();
+// const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+const store = createStore(reducers,
+  compose(applyMiddleware(sagaMiddleware))
+);
+sagaMiddleware.run(watcherSaga);
+//END REDUX
+
 
 export default function App() {
   return (
+    <ReduxProvider store={store}>      
+
     <View style={styles.container}>
         <IndexNavigation/>
     </View>
+    </ReduxProvider>
   );
 }
 const styles = StyleSheet.create({
@@ -19,8 +34,4 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-
-  
-
-
 });

@@ -10,7 +10,6 @@ import { palette } from '../theme';
 
 
 const  tema = {
-    
     defaultNavigationOptions: {
       headerStyle: { backgroundColor: palette.primary.main, borderBottomWidth: 0},
       headerTintColor: palette.primary.contrastText,
