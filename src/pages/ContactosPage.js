@@ -60,12 +60,14 @@ class ContactosPage extends Component {
     }
 
     cambiarEstado(contacto, estado) {
-        const clientes = this.state.clientes;
-        const indice = clientes.findIndex(item => item.nombre === contacto.nombre);
-        clientes[indice].estado = estado;
-        this.setState({
-            clientes: clientes
-        });
+        // const clientes = this.state.clientes;
+        // const indice = clientes.findIndex(item => item.nombre === contacto.nombre);
+        // clientes[indice].estado = estado;
+        // this.setState({
+        //     clientes: clientes
+        // });
+        contacto.estado = estado;
+        this.props.updateContactos(contacto);
         this.props.navigation.navigate('home');
     }
 
