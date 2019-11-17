@@ -1,66 +1,43 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, Image } from 'react-native'
 import Camara from '../components/Camara'
 import { storageRef } from '../../firebase/firestore'
+
+
 export default class CameraPage extends Component {
+
+
 
     state = {
         uploadProgress: 0,
+        uploadedPhotoUrl: null,
     };
 
-    uriToBlob = (uri) => {
-        return new Promise((resolve, reject) => {
-          const xhr = new XMLHttpRequest();
-          xhr.onload = function() {
-            // return the blob
-            resolve(xhr.response);
-          };
-          
-          xhr.onerror = function() {
-            // something went wrong
-            reject(new Error('uriToBlob failed'));
-          };
-          // this helps us get a blob
-          xhr.responseType = 'blob';
-          xhr.open('GET', uri, true);
-          
-          xhr.send(null);
+
+    async  storeUpload(uri) {
+        const blob = await new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                resolve(xhr.response);
+            };
+            xhr.onerror = function (e) {
+                console.log(e);
+                reject(new TypeError('Network request failed'));
+            };
+            xhr.responseType = 'blob';
+            xhr.open('GET', uri, true);
+            xhr.send(null);
         });
-      }
- 
+        const ref = storageRef.ref().child('contactos/test.png');
+        const snapshot = await ref.put(blob);
+        blob.close();
 
+        const uploadedPhotoUrl = await snapshot.ref.getDownloadURL();
+        this.setState({ uploadedPhotoUrl: uploadedPhotoUrl });// habilitar boton
 
-    storeUpload(file) {
-        let ref = storageRef.ref();
-        try {
-            let uploadTask = ref.child('contactos/file.png').put(file);
-            uploadTask.on(
-                firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-                function (snapshot) {
-                    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    this.setState({ uploadProgress: progress }); 
-                    console.log('Upload is ' + progress + '% done');
-                },
-                function (error) {
-                    switch (error.code) {
-                        case 'storage/unauthorized': break;
-                        case 'storage/canceled': break;
-                            break;
-                    }
-                },
-                function () {
-                    uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-                        /// Proceso para guardar url de foto
-                        console.log('File available at', downloadURL);
-                    });
-                });
-
-        }
-        catch (error) {
-
-        }
 
     }
+
 
 
 
@@ -68,11 +45,26 @@ export default class CameraPage extends Component {
     render() {
         return (
             <View style={{ flex: 1 }}>
-                <Text>{this.state.uploadProgress}</Text>
-                <Camara 
-                    uriToBlob={uriToBlob}
-                    storeUpload={storeUpload}
-                />
+
+                {
+                    this.state.uploadedPhotoUrl &&
+                    <View style={{ flex: 3 }}>
+                        <Image
+                            source={{ uri: this.state.uploadedPhotoUrl }}
+                            style={{ width: 200, height: 200, borderRadius: 25 }}>
+                        </Image>
+                    </View>
+                }
+
+
+
+                <View style={{ flex: 6 }}>
+                    <Text>{this.state.uploadProgress}</Text>
+                    <Camara storeUpload={this.storeUpload} />
+                </View>
+
+
+
             </View>
         )
     }

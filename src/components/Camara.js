@@ -14,9 +14,7 @@ export default class Camara extends React.Component {
     if (!this.state.isCapturing) {
       this.setState({ isCapturing: true }); // deshabilitar boton
       let photo = await this.camera.takePictureAsync();
-      console.log(photo);
-      const buffer = this.props.uriToBlob(photo.uri);
-      this.props.storeUpload(buffer);
+      this.props.storeUpload(photo.uri)
       this.setState({ isCapturing: false });// habilitar boton
     }
   }
