@@ -1,57 +1,14 @@
 import React, { Component } from 'react'
-import { Text, View, ScrollView } from 'react-native'
+import { Text, View, ScrollView, ActivityIndicator } from 'react-native'
 import ContactItem from '../components/ContactItem'
 import { withNavigation } from 'react-navigation';
-import {CONTACTOS_READ, CONTACTO_UPDATE} from '../state/actionTypes'
+import { CONTACTOS_READ, CONTACTO_UPDATE } from '../state/actionTypes'
 import { connect } from 'react-redux'
-
+import ErrorComponent from '../components/ErrorComponent'
 class ContactosPage extends Component {
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            clientes: [
-                {
-                    nombre: 'Daniel',
-                    foto: 'https://images.pexels.com/photos/3098734/pexels-photo-3098734.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
-                    celular: '0958989804',
-                    email: 'hola@ecudevs.com',
-                    estado: 1
-                },
-                {
-                    nombre: 'Thian',
-                    foto: 'https://images.pexels.com/photos/2710131/pexels-photo-2710131.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
-                    celular: '0958989804',
-                    email: 'hola@ecudevs.com',
-                    estado: 1
-                },
-                {
-                    nombre: 'Paula',
-                    foto: 'https://images.pexels.com/photos/3098734/pexels-photo-3098734.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
-                    celular: '0958989804',
-                    email: 'hola@ecudevs.com',
-                    estado: 2
-                },
-                {
-                    nombre: 'Luis',
-                    foto: 'https://images.pexels.com/photos/2710131/pexels-photo-2710131.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
-                    celular: '0958989804',
-                    email: 'hola@ecudevs.com',
-                    estado: 2
-                },
-                {
-                    nombre: 'Adriana',
-                    foto: 'https://images.pexels.com/photos/2710131/pexels-photo-2710131.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
-                    celular: '0958989804',
-                    email: 'hola@ecudevs.com',
-                    estado: 3
-                },
 
-            ]
-        }
-    }
-
-    componentDidMount(){
+    componentDidMount() {
         this.props.getContactos();
     }
 
@@ -67,42 +24,53 @@ class ContactosPage extends Component {
 
     render() {
 
-        const {contactos, fetchingList, errorList} = this.props.contactosState
+        const { contactos, fetchingList, errorList } = this.props.contactosState;
+        console.log(errorList)
         return (
             <ScrollView>
                 <Text style={{ fontSize: 24, fontWeight: '600' }}>
                     {this.props.titulo}
                 </Text>
+
                 {
 
-            // x ? 1 : 2
-            // x && 1
-                        
-                        contactos && contactos.map((item, index) => {
-                        const nuevoItem = Object.assign(
-                            item,
-                            { inProgress: () => this.cambiarEstado(item, 2) },
-                            { finish: () => this.cambiarEstado(item, 3) },
-                            { reset: () => this.cambiarEstado(item, 1) }
-                        );
+                    fetchingList ? 
+                 
+                    <ActivityIndicator size="large" color="#0000ff" />
+           
 
-                        if(this.props.mostrar == nuevoItem.estado){
-                            return (
-                                <ContactItem
-                                    key={index}
-                                    contacto={nuevoItem}
-                                    gestionar={() => this.gestionar(item)}
-                                ></ContactItem>
-                            )
-                        }
-                     
+                        : errorList ?  <ErrorComponent mensaje={errorList.mensaje} descripcion={'...'} />
+                            : contactos && contactos.map((item, index) => {
+                                const nuevoItem = Object.assign(
+                                    item,
+                                    { inProgress: () => this.cambiarEstado(item, 2) },
+                                    { finish: () => this.cambiarEstado(item, 3) },
+                                    { reset: () => this.cambiarEstado(item, 1) }
+                                );
+
+                                if (this.props.mostrar == nuevoItem.estado) {
+                                    return (
+                                        <ContactItem
+                                            key={index}
+                                            contacto={nuevoItem}
+                                            gestionar={() => this.gestionar(item)}
+                                        ></ContactItem>
+                                    )
+                                }
 
 
 
 
 
-                    })
+
+                            })
+
+
+
                 }
+
+
+
             </ScrollView>
         )
     }
@@ -117,12 +85,12 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        getContactos: () => dispatch({ type:CONTACTOS_READ  }),
-        updateContactos: payload => dispatch({type:CONTACTO_UPDATE, payload}) 
+        getContactos: () => dispatch({ type: CONTACTOS_READ }),
+        updateContactos: payload => dispatch({ type: CONTACTO_UPDATE, payload })
     }
 };
 
 
 export default withNavigation(
-connect(mapStateToProps, mapDispatchToProps)(ContactosPage)
+    connect(mapStateToProps, mapDispatchToProps)(ContactosPage)
 );

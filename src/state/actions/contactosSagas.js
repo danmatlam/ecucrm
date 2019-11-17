@@ -32,7 +32,7 @@ export function* readContactosSagas() {
         }
     } 
     catch (error) {
-        yield put({ type: CONTACTOS_READ_ERR, error: error });
+        yield put({ type: CONTACTOS_READ_ERR, error: error , payload:{ mensaje:'Ups algo salio mal', descripcion:error} });
     }
 
 }

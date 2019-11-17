@@ -35,7 +35,7 @@ const  contactosReducer = (state = defaultState, action) => {
         case CONTACTOS_READ_ERR: return {
             ...state,
             fetchingList:false,
-            errorList: true,
+            errorList: action.payload,
         } 
 
         
