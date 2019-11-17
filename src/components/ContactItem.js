@@ -6,14 +6,15 @@ const ContacItem = (props) => {
     // const foto = props.contacto.foto;
     // const nombre = props.contacto.nombre; d
     const {gestionar} = props;
-    const { foto, nombre, celular, email, estado } = props.contacto;
+    const { _id, foto, nombre, celular, email, estado } = props.contacto;
     return (
         <View>
             <ListItem 
+                estado={estado}
                 gestionar={gestionar} 
             >
                 <Avatar foto={foto}></Avatar>
-                <Nombre nombre={nombre}></Nombre>
+                <Nombre nombre={nombre+" "+_id}></Nombre>
                 <ButtonContainer>
                     <IconButton icono='phone'/>
                     <IconButton icono='mail'/>
@@ -26,7 +27,7 @@ const ContacItem = (props) => {
 
 const ListItem = (props) => {
 
-    const estado = props.estado;
+    
     const {warning, danger, success } = status;
 
     return (
@@ -34,7 +35,12 @@ const ListItem = (props) => {
             onPress={props.gestionar}
             style={{
             ...STYLES_HELPERS_RN.shadowColor,
-            backgroundColor: danger,
+            backgroundColor: 
+                    props.estado == 1 
+                        ? danger 
+                        : props.estado == 2 
+                            ? warning 
+                            :success,
             borderRadius: 18,
             padding: 9,
             marginVertical:9,
@@ -42,6 +48,7 @@ const ListItem = (props) => {
             alignItems: 'center',
             width:'100%'
         }}>
+           
             {props.children}
         </TouchableOpacity>
     )

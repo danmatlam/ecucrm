@@ -4,6 +4,8 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import { palette } from '../theme';
 import ContactosPage from '../pages/ContactosPage'
+
+
 const tema = {
     tabBarOptions: {
         labelStyle: { fontSize: 12 },
@@ -13,11 +15,10 @@ const tema = {
             color: palette.primary.contrastText,
         },
         indicatorStyle: {
-            backgroundColor: palette.gray.gray300
+            backgroundColor: palette.secondary.main
         },
     }
 }
-
 
 const rutas = {
 

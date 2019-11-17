@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 const ContactForm = (props) => {
 
     const { contacto } = props; 
-    const _id = props.id
+    const _id = contacto._id
     const [foto, setFoto] = useState(contacto.foto);
     const [nombre, setNombre] = useState(contacto.nombre);
     const [celular, setCelular] = useState(contacto.celular);
@@ -17,8 +17,7 @@ const ContactForm = (props) => {
     const handleSubmit = () => {
         console.log(props.updateContactos)
         props.updateContactos({
-                
-            _id,
+                _id,
                 foto,
                 nombre,
                 celular,
@@ -26,14 +25,13 @@ const ContactForm = (props) => {
                 estado
             }
         );
-        alert('here...')
     }
 
 
     return (
         <View>
             <Text style={{ fontSize: 40 }}>{nombre}</Text>
-           
+        
             <TextInput
                 label='Foto'
                 value={foto}

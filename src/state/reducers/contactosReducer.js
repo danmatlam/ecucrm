@@ -47,12 +47,13 @@ const  contactosReducer = (state = defaultState, action) => {
         case CONTACTO_UPDATE_SUCCESS:  return {
             ...state,
             fetching: false,
-            contactos: replaceContacto(state.contactos, action.contacto),
+            contactos: replaceContacto(state.contactos, action.payload),
         };
-        case CONTACTO_UPDATE_ERR: return {
+        case CONTACTO_UPDATE_ERR: 
+        return {    
             ...state,
             fetching:false,
-            error: true,
+            error: action.payload,
         } 
         default: return state;
     }
@@ -60,7 +61,8 @@ const  contactosReducer = (state = defaultState, action) => {
 
 
 const replaceContacto = (contactos, contacto) => {
-    let index = contactos.findIndex(item => item._id == usuario._id)
+    console.log(contacto);
+    let index = contactos.findIndex(item => item._id == contacto._id)
     contactos[index] = contacto;
     return contactos;
 };

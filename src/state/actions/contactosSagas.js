@@ -10,13 +10,12 @@ import {
     CONTACTO_UPDATE_ERR
 } from '../actionTypes';
 
-
+// const server = 'http://localhost:3001'
+const server = 'https://firebase-back-clases.herokuapp.com'
 
 //[1] Crear función que llama al api
-const readContactos = () => {
-    return axios.get('https://rn-crm-back.herokuapp.com/api/clientes');
-}
-//[2] Crear Saga, llama a [1] y dispara reducer
+const readContactos = () => axios.get(server+'/api/clientes');
+const updateContacto = (payload) => axios.put(server+'/api/clientes', payload);
 export function* readContactosSagas() {
     try {
         //[2.1] NOS SUBSCRIBIMOS 
@@ -34,31 +33,19 @@ export function* readContactosSagas() {
     }
 
 }
-
-
-
-
-
-
-//[1] Crear función que llama al api
-const updateContacto = (payload) => {
-    return axios.put('https://rn-crm-back.herokuapp.com/api/clientes', payload);
-}
-//[2] Crear Saga, llama a [1] y dispara reducer
 export function* updateContactoSagas(action) {
     try {
-        console.log(action.payload.nombre);
         const res = yield call(updateContacto, action.payload);
         const cliente = res.data.cliente;
+        console.log('here')
+        console.log(cliente)
         //[2.2] RESPUESTA EN MANO DESPACHAMOS REDUX
         if (cliente) {
             yield put({ type:CONTACTO_UPDATE_SUCCESS, payload: cliente });
-        }else{
-            throw 'Algo salio mal...'
         }
     } 
     catch (error) {
-        yield put({ type: CONTACTO_UPDATE_ERR, error: error });
+        yield put({ type: CONTACTO_UPDATE_ERR, payload: error });
     }
 
 }
