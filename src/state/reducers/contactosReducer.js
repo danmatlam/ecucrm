@@ -61,7 +61,6 @@ const  contactosReducer = (state = defaultState, action) => {
 
 
 const replaceContacto = (contactos, contacto) => {
-    console.log(contacto);
     let index = contactos.findIndex(item => item._id == contacto._id)
     contactos[index] = contacto;
     return contactos;

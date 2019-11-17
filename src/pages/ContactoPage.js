@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native'
+import { View, Text, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
 import { palette, status } from '../theme';
 import { withNavigation } from 'react-navigation';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
@@ -12,15 +12,14 @@ const ContactoPage = (props) => {
     const { _id, nombre, foto, celular, email, estado } = contacto; /// extraigo variables
     const { inProgress, finish, reset } = contacto; /// extraigo funciones
 
-    const keyboardVerticalOffset = Platform.OS === 'ios' ? 40 : 0
+    const keyboardVerticalOffset = Platform.OS === 'ios' ? 60 : 0
 
     return (
         <View style={styles.container}>
-
-
-        <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={keyboardVerticalOffset} >
-
-        <ScrollView >
+            <KeyboardAvoidingView 
+            behavior='position' 
+            keyboardVerticalOffset={keyboardVerticalOffset} >
+            <ScrollView >
                 <Card>
                     <Card.Title title="Card Title" subtitle={_id}
                         left={(props) => <Avatar.Image size={24} source={{ uri: foto }} />} />
@@ -34,18 +33,15 @@ const ContactoPage = (props) => {
                     </Card.Content>
                 </Card>
 
-
                 <ContactForm
                     updateContactos={props.updateContactos}
                     contacto={contacto}
                 />
-      
- 
-        </ScrollView>
+            </ScrollView>
 
-        </KeyboardAvoidingView>
-    
-    </View>
+            </KeyboardAvoidingView>
+
+        </View>
     )
 }
 const styles = StyleSheet.create({

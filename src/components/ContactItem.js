@@ -35,12 +35,8 @@ const ListItem = (props) => {
             onPress={props.gestionar}
             style={{
             ...STYLES_HELPERS_RN.shadowColor,
-            backgroundColor: 
-                    props.estado == 1 
-                        ? danger 
-                        : props.estado == 2 
-                            ? warning 
-                            :success,
+            // backgroundColor: props.estado == 1 ? 'xxx' : 'yyy',
+            backgroundColor: props.estado == 1 ? danger : props.estado === 2 ? warning : success,
             borderRadius: 18,
             padding: 9,
             marginVertical:9,

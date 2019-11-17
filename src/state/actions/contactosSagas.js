@@ -14,8 +14,11 @@ import {
 const server = 'https://firebase-back-clases.herokuapp.com'
 
 //[1] Crear función que llama al api
-const readContactos = () => axios.get(server+'/api/clientes');
+const readContactos = () => axios.get(server+'/api/clientes')
 const updateContacto = (payload) => axios.put(server+'/api/clientes', payload);
+
+
+
 export function* readContactosSagas() {
     try {
         //[2.1] NOS SUBSCRIBIMOS 
@@ -37,8 +40,6 @@ export function* updateContactoSagas(action) {
     try {
         const res = yield call(updateContacto, action.payload);
         const cliente = res.data.cliente;
-        console.log('here')
-        console.log(cliente)
         //[2.2] RESPUESTA EN MANO DESPACHAMOS REDUX
         if (cliente) {
             yield put({ type:CONTACTO_UPDATE_SUCCESS, payload: cliente });

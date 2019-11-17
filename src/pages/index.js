@@ -6,6 +6,7 @@ import ContactForm from '../components/ContactForm'
 import ContactoPage from './ContactoPage';
 import TabsNavigation from './TabsNavigation';
 import { palette } from '../theme';
+import CameraPage from './CameraPage';
 
 
 
@@ -23,6 +24,14 @@ const tema = {
 }
 
 let rutas = {
+
+    camara: {
+        screen: CameraPage,
+        navigationOptions: {
+            title: 'EcuCrm',
+        },
+
+    },
 
     home: {
         screen: TabsNavigation,
