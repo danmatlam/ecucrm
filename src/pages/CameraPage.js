@@ -45,7 +45,6 @@ export default class CameraPage extends Component {
     render() {
         return (
             <View style={{ flex: 1 }}>
-
                 {
                     this.state.uploadedPhotoUrl &&
                     <View style={{ flex: 3 }}>
