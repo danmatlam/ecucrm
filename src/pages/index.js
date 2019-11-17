@@ -25,13 +25,7 @@ const tema = {
 
 let rutas = {
 
-    camara: {
-        screen: CameraPage,
-        navigationOptions: {
-            title: 'EcuCrm',
-        },
 
-    },
 
     home: {
         screen: TabsNavigation,
@@ -39,6 +33,12 @@ let rutas = {
             title: 'EcuCrm',
         },
 
+    },
+    camara: {
+        screen: CameraPage,
+        navigationOptions: {
+            title: 'EcuCrm',
+        }
     },
     contactos: {
         screen: ContactosPage,

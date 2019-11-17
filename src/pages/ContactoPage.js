@@ -8,12 +8,15 @@ import { connect } from 'react-redux'
 import ContactForm from '../components/ContactForm'
 import { ScrollView } from 'react-native-gesture-handler';
 const ContactoPage = (props) => {
+    
     const contacto = props.navigation.state.params.contacto; // extraigo parametros
     const { _id, nombre, foto, celular, email, estado } = contacto; /// extraigo variables
     const { inProgress, finish, reset } = contacto; /// extraigo funciones
 
     const keyboardVerticalOffset = Platform.OS === 'ios' ? 60 : 0
 
+
+    
     return (
         <View style={styles.container}>
             <KeyboardAvoidingView 
@@ -30,6 +33,15 @@ const ContactoPage = (props) => {
                         <Button onPress={reset} color={status.danger} style={styles.button} mode="contained"> Por atender</Button>
                         <Button onPress={inProgress} color={status.warning} style={styles.button} mode="contained" >En progreso</Button>
                         <Button onPress={finish} color={status.success} style={styles.button} mode="contained">Vendido</Button>
+                  
+
+                        <Button 
+                         onPress={()=>props.navigation.navigate('camara', { _id:_id })}
+                         color={palette.primary.main} 
+                         style={styles.button} mode="contained">Tomar foto</Button>
+
+                      
+                  
                     </Card.Content>
                 </Card>
 

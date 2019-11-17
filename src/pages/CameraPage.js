@@ -14,7 +14,7 @@ export default class CameraPage extends Component {
     };
 
 
-    async  storeUpload(uri) {
+    async  storeUpload(uri, _id) {
         const blob = await new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
             xhr.onload = function () {
@@ -28,7 +28,7 @@ export default class CameraPage extends Component {
             xhr.open('GET', uri, true);
             xhr.send(null);
         });
-        const ref = storageRef.ref().child('contactos/test.png');
+        const ref = storageRef.ref().child('contactos/'+_id+'.png');
         const snapshot = await ref.put(blob);
         blob.close();
 
@@ -43,7 +43,12 @@ export default class CameraPage extends Component {
 
 
     render() {
+        const _id = this.props.navigation.state.params._id;
+    
+    
+
         return (
+            
             <View style={{ flex: 1 }}>
                 {
                     this.state.uploadedPhotoUrl &&
@@ -59,7 +64,9 @@ export default class CameraPage extends Component {
 
                 <View style={{ flex: 6 }}>
                     <Text>{this.state.uploadProgress}</Text>
-                    <Camara storeUpload={this.storeUpload} />
+                    <Camara
+                    _id={_id}
+                    storeUpload={this.storeUpload} />
                 </View>
 
 
