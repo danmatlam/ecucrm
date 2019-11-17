@@ -15,8 +15,8 @@ export default class Camara extends React.Component {
       this.setState({ isCapturing: true }); // deshabilitar boton
       let photo = await this.camera.takePictureAsync();
       console.log(photo);
-      /// ejecutar funcion recibida como props.
-      //
+      const buffer = this.props.uriToBlob(photo.uri);
+      this.props.storeUpload(buffer);
       this.setState({ isCapturing: false });// habilitar boton
     }
   }
@@ -25,7 +25,7 @@ export default class Camara extends React.Component {
     this.setState({ hasCameraPermission: status === 'granted' });
   }
   render() {
-    const { hasCameraPermission } = this.state;
+    const { hasCameraPermission, isCapturing } = this.state;
     if (hasCameraPermission === null) {
       return <View />;
     } else if (hasCameraPermission === false) {
